@@ -83,7 +83,7 @@ SPEscapes(Function &F, const Argument *sp_arg) {
   // Initialize the worklist to all of the instructions using the Sp
   std::set<const Instruction*> WorkList;
   for (Value::const_use_iterator UI = sp_arg->use_begin(), UE = sp_arg->use_end(); UI != UE; ++UI)
-      WorkList.insert(cast<Instruction>(UI));
+    WorkList.insert(cast<Instruction>(UI->getUser()));
   
   while (!WorkList.empty()) {
     // Get an element from the worklist
